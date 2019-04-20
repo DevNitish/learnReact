@@ -40,8 +40,8 @@ class App extends Component {
     return (
       <div >
         <NavBar/>
-        <p>{this.state.title}</p>
-        <p>{this.state.text}</p>
+        {/* <p>{this.state.title}</p>
+        <p>{this.state.text}</p> */}
         <button onClick={this.state.changeStory}>Change me</button>
         <Grid container >
           <Grid item xs={8}>
