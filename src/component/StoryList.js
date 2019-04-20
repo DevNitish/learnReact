@@ -5,8 +5,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 import ListItemText from '@material-ui/core/ListItemText';
+import { func } from 'prop-types';
 
-const story=[{
+const mystorylist=[{
     id:1,
     text:"Eiusmod amet laborum dolor ullamco duis culpa in anim. Irure magna excepteur ullamco reprehenderit et. Excepteur duis ullamco qui officia aliqua nulla fugiat cupidatat. Amet esse esse exercitation elit culpa sit do aliqua esse. Ut id enim adipisicing eiusmod ex labore sunt excepteur.",
     title:"Tempor ut reprehenderit "
@@ -24,7 +25,27 @@ const story=[{
     title:"enim dolore"
   }];
 
-const StoryList=()=>{
+
+function StoryCard(props){
+    function ListItemLink(props) {
+        return <ListItem button component="a" {...props} />;
+    }
+
+    return (
+        props.storylist.map((obj)=>{ 
+            function handleClick(){props.changeStory(obj);}
+
+            return (
+            <ListItemLink key={obj.id} onClick={handleClick}>
+                     <ListItemText primary={obj.title} />
+                     {/* <p>{obj.text}</p> */}
+                </ListItemLink>
+            )})
+
+    )
+}
+
+const StoryList=(props)=>{
     
         const styles = theme => ({
             root: {
@@ -34,19 +55,13 @@ const StoryList=()=>{
             },
         });
         
-        function ListItemLink(props) {
-            return <ListItem button component="a" {...props} />;
-        }
-  
+     
         return(
             <div>
-                 <List component="nav">
-                    <ListItemLink href="#simple-list">
-                        <ListItemText primary="Spam" />
-                    </ListItemLink>
-                    <ListItemLink href="#simple-trash">
-                        <ListItemText primary="Trash" />
-                    </ListItemLink>
+                 <List component="nav" >
+                        
+                            <StoryCard changeStory ={props.onClickFun} storylist={mystorylist} />
+                
                 </List>
             </div>
         )
